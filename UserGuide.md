@@ -1,8 +1,4 @@
-Here's a User Guide for **EMSAS-RT** in Markdown format, suitable for a GitHub repository:
-
----
-
-# EMSAS-RT: Embedded Multi-Scheduling and Synchronization Real-Time Operating System
+# EMSAS-RT: Easy-Multi-tasking SAS's Real-Time Operating System
 
 ## Table of Contents
 
