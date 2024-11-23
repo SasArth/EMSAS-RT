@@ -49,10 +49,21 @@ void sortTasks() {
 
 //________________________________FUNCTIONS________________________________//
 //Deactivation
-void deactivateTask(int taskIndex){
-  taskList[taskIndex].isActive = false;
+void deactivateTask(void (*taskFunc)()) {
+    for (int i = 0; i < taskCount; i++) {
+        if (taskList[i].taskFunction == taskFunc) {
+            taskList[i].isActive = false;
+            break;
+        }
+    }
 }
+
 //Activation
-void activateTask(int taskIndex){
-  taskList[taskIndex].isActive = true;
+void activateTask(void (*taskFunc)()) {
+    for (int i = 0; i < taskCount; i++) {
+        if (taskList[i].taskFunction == taskFunc) {
+            taskList[i].isActive = true;
+            break;
+        }
+    }
 }

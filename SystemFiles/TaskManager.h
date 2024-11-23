@@ -18,7 +18,7 @@ extern TCB taskList[MAX_TASKS+1];
 extern uint8_t taskCount;
 
 bool addTask(void (*taskFunc)(), uint8_t priority, uint16_t stackSize );
-void deactivateTask(int taskIndex);
-void activateTask(int taskIndex);
+void deactivateTask(void (*taskFunc)());
+void activateTask(void (*taskFunc)());
 
 #endif
