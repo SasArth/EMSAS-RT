@@ -4,6 +4,7 @@
 
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
+- [Non-Blocking Delay](#non-blocking-delay)
 - [Tasks](#tasks)
 - [Semaphore](#semaphore)
   - [Binary Semaphore](#binary-semaphore)
@@ -14,7 +15,7 @@
 
 ## Introduction
 
-**EMSAS-RT** (Embedded Multi-Scheduling and Synchronization Real-Time Operating System) is a lightweight RTOS designed for Arduino platforms with AVR architecture. It provides task management, semaphores, mutexes, mailboxes, and event groups for easy multitasking and inter-task communication.
+**EMSAS-RT** (Embedded Multi-Scheduling and Synchronization Real-Time Operating System) is a lightweight RTOS designed for Arduino platforms with AVR architecture. It provides task management, semaphores, mutexes, mailboxes, and event groups for easy multitasking and inter-task communication. It uses preemptive scheduling based on task priority and RoundRobin if the priority is same.
 
 ---
 
@@ -39,11 +40,11 @@ void setup() {
     initMailbox(3);
 
     // Add tasks to the system
-    addTask(task1, 128);
-    addTask(task2, 128);
+    addTask(task1, 0, 128);
+    addTask(task2, 1, 128);
 
-    // Start the system timer
-    start_system_timer();
+    //RTOS Setup and Starting Timer
+    eRTSetup();
 }
 
 void loop() {
@@ -52,12 +53,22 @@ void loop() {
 ```
 
 ---
+## Non-Blocking Delay
+To delay a task for a specified amount of time without blocking other tasks, a non-blocking delay can be used. This ensures that the task is not scheduled during the delay, allowing lower-priority tasks to execute in the meantime. This can be achieved using `eRTDelay(delayDuration-ms)`.
 
+```cpp
+void eRTDelay(uint32_t delayDuration)
+
+//Example
+eRTDelay(5000);
+```
+
+---
 ## Tasks
 
 ### Adding a Task
 
-Tasks are added using the `addTask()` function, which registers the task and sets up its stack. You can create multiple tasks for multitasking.
+Tasks are added using the `addTask()` function, which registers the task and it's priority and sets up its stack. You can create multiple tasks for multitasking. Keep all Tasks as Infinite Loops.
 
 ```cpp
 bool addTask(void (*taskFunc)(), uint16_t stackSize);
@@ -69,22 +80,34 @@ bool addTask(void (*taskFunc)(), uint16_t stackSize);
 void task1() {
     while(true) {
         Serial.println("Task 1 running");
-        delay(1000);
+        eRTDelay(1000);
     }
 }
 
 void task2() {
     while(true) {
         Serial.println("Task 2 running");
-        delay(2000);
+        eRTDelay(1000);
     }
 }
 
 void setup() {
-    addTask(task1, 128);
-    addTask(task2, 128);
-    start_system_timer();
+    addTask(task1, 0, 128);
+    addTask(task2, 1, 128);
+    eRTSetup();
 }
+```
+
+### Deactivating & Reactivating Tasks
+Task can be activated and reactivated using the `activateTask(taskName)` & `activateTask(taskName)`. 
+
+```cpp
+void deactivateTask(void (*taskFunc)());
+void activateTask(void (*taskFunc)());
+
+//Example
+deactivateTask(task2);
+activateTask(task1);
 ```
 
 ---
@@ -247,7 +270,7 @@ void setup() {
 
 ## Task Scheduler
 
-The EMSAS-RT uses a round-robin scheduling system. The `scheduler()` function switches between tasks based on the task list.
+The EMSAS-RT uses a priority-based preemptive scheduling system. The `scheduler()` function switches between tasks based on their priority and runtime, iterating through the task list.
 
 ---
 

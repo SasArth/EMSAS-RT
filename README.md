@@ -50,12 +50,6 @@ Feel free to reach out or follow me on my social profiles for more updates!
 
 ---
 
-## Contribute
-
-EMSAS-RT is an open-source project, and I welcome contributions from the community! Feel free to submit issues, contribute to the codebase, or improve the documentation.
-
----
-
 ## References and Credits
 - [*AVR-Context* Library](https://docs.arduino.cc/libraries/avr-context/)
 - [*RIOS*](https://www.cs.ucr.edu/~vahid/rios/)
