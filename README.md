@@ -1,3 +1,6 @@
+<img src="EmSAS-RT_Logo.png" width="200" height="200" alt="EmSAS-RT Logo">
+
+
 # EMSAS-RT: Easy-Multi-tasking SAS's Real-Time Operating System
 
 ### Welcome to EMSAS-RT!
