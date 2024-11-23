@@ -1,7 +1,3 @@
-Here’s a draft for the README page of your RTOS project in Markdown format:
-
----
-
 # EMSAS-RT: Easy-Multi-tasking SAS's Real-Time Operating System
 
 ### Welcome to EMSAS-RT!
