@@ -3,7 +3,7 @@
 
 #include <Arduino.h>
 #include "../EMSAS-RT_Config.h"
-#include "avrcontext_arduino.h"
+#include "avrContext/avrcontext_arduino.h"
 
 typedef struct{
 void (*taskFunction)(); //Task ptr
