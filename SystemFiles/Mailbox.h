@@ -1,7 +1,7 @@
 #ifndef COMM_MAILBOX_H
 #define COMM_MAILBOX_H
 
-#include "Mutex.h"
+#include "../EMSAS-RT_Config.h"
 
 //Mailbox
 typedef struct {

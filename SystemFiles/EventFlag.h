@@ -1,7 +1,7 @@
 #ifndef COMM_EVENTFLAG_H
 #define COMM_EVENTFLAG_H
 
-#include "Mailbox.h"
+#include "../EMSAS-RT_Config.h"
 
 //Event Flag
 typedef struct {

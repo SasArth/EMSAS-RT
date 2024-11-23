@@ -2,19 +2,30 @@
 #include "avrcontext_arduino.h"
 
 uint8_t currentTask;
+int prio=0;
 
 //Scheduler
-uint8_t scheduler(){
- 
- reSchedule:
+uint8_t scheduler() {
+    changeFlag = false;
+    prio=0;
 
- currentTask = (currentTask + 1) % TASK_COUNT;  // Switch to the next task (round-robin)
-    if(taskList[currentTask].isActive){
-      // Set the current task context
-    }
-    else{
+    reSchedule:
+    currentTask = (currentTask + 1) % taskCount; 
+    if((taskList[currentTask].nextRuntime > millis())){
       goto reSchedule;
     }
-  return currentTask;
+
+  if(currentTask==(taskCount-1)){prio++;}
+
+  if(taskList[currentTask].priority>prio){
+   goto reSchedule; 
+  }
+  if(!taskList[currentTask].isActive){
+    goto reSchedule;
+  }
+
+
+return currentTask;
+
 }
 

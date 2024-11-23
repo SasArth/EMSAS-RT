@@ -28,7 +28,6 @@ ISR(WDT_vect, ISR_NAKED) {
         "cli\n",  // Disable interrupts while switching tasks
         current_task_ctx);
 
-    
     current_task_ctx = &taskList[scheduler()].context;
 
     // Re-enable the watchdog timer interrupt to avoid a reset

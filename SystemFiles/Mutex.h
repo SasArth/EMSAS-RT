@@ -1,7 +1,7 @@
 #ifndef RM_MUTEX_H
 #define RM_MUTEX_H
 
-#include "Semaphore.h"
+#include "../EMSAS-RT_Config.h"
 
 //Mutex
 typedef struct{

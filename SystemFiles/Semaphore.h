@@ -1,7 +1,7 @@
 #ifndef RM_SEMAPHORE_H
 #define RM_SEMAPHORE_H
 
-#include "Scheduler.h"
+#include "../EMSAS-RT_Config.h"
 
 //Binary Semaphore
 typedef struct{
