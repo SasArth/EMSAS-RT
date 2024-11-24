@@ -33,7 +33,7 @@ This project aims to provide **an easy-to-use, intuitive RTOS for Arduino**, mak
 
 ## Getting Started
 
-To get started with EMSAS-RT, check out the [User Guide](./User_Guide.md) for detailed setup instructions, API documentation, and example projects.
+To get started with EMSAS-RT, check out the [User Guide](./UserGuide.md) for detailed setup instructions, API documentation, and example projects.
 
 ---
 
